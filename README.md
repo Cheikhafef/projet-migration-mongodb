@@ -1,8 +1,8 @@
 
-📘 Transformation & Tests des Données — MongoDB
+** 📘 Transformation & Tests des Données — MongoDB **
 
 🎯 Objectif du Projet
-
+*----------------------*
 Ce projet permet de :
 
 - Charger les données météo provenant de trois sources :
@@ -19,7 +19,7 @@ Ce projet permet de :
                 * infoclimat_mongo.json
 
 ☁️ Ingestion des Données avec Airbyte → S3
-
+*------------------------------------*
 Mettre en place une plateforme d’ingestion automatisée permettant de récupérer les données météo au format Excel et JSON, puis de les charger dans un bucket S3 afin de les centraliser pour les étapes de transformation et migration.
 
       ⚙️ 1️⃣ Installation & Configuration Airbyte
@@ -49,6 +49,7 @@ Mettre en place une plateforme d’ingestion automatisée permettant de récupé
         Les données sont automatiquement transférées vers le bucket S3 :
         📌 Bucket cible : meteo_data
       Chaque fichier est envoyé dans le bucket sous forme de données brutes, prêtes à être exploitées dans l’étape suivante de transformation.
+-------
        🧪 4️⃣ Bénéfices
          * Centralisation des données
          * Pipeline reproductible et industrialisable
@@ -56,13 +57,15 @@ Mettre en place une plateforme d’ingestion automatisée permettant de récupé
 
 ----------
 
-🧠 Logique de Transformation
-✔️ 1 — Chargement des données
+** 🧠 Logique de Transformation **
+
+ 1 — Chargement des données
    -  Chaque fichier JSON est ouvert puis validé :
    -  Vérification de l’existence du fichier
    -  Vérification que le contenu est lisible et valide en JSON
 
-✔️ 2 — Tests d’intégrité avant migration
+ 2 — Tests d’intégrité avant migration
+
 Pour chaque dataset, les contrôles suivants sont effectués :
    - Colonnes disponibles
    - Types détectés
@@ -70,33 +73,31 @@ Pour chaque dataset, les contrôles suivants sont effectués :
    - Doublons
 
    Exemple de sortie :
-
-Code
-Colonnes : ['date', 'temperature', 'humidity', ...]
-Types : float64 / object
-Valeurs manquantes : 7
-Doublons : 404
+                     Code
+                     Colonnes : ['date', 'temperature', 'humidity', ...]
+                     Types : float64 / object
+                     Valeurs manquantes : 7
+                     Doublons : 404
 
 Ces tests garantissent la qualité des données sources avant transformation.
-----
 
-✔️ 3 — Transformation des Stations Personnelles
+
+ 3 — Transformation des Stations Personnelles
+
 Les fichiers la_madeleine.json et ichtegem.json sont restructurés au format MongoDB :
 
-json
-{
-  "_id": "ILAMAD25",
-  "provider": "personal_station",
-  "measures": [
-    {
-      "timestamp": "...",
-      "temperature": 12.5,
-      "humidity": 85,
-      "pressure": 1012
-    }
-  ]
-}
-
+                     json
+                     {
+                     "_id": "ILAMAD25",
+                    "provider": "personal_station",
+                    "measures": [
+                     {
+                     "timestamp": "...",
+                     "temperature": 12.5,
+                     "humidity": 85,
+                     "pressure": 1012
+                     }]}
+  
 
 Champs extraits :timestamp, temperature, humidity, pressure
 
@@ -113,31 +114,34 @@ Exports générés :
 
 -------
 
-✔️ 4 — Transformation InfoClimat
+ 4 — Transformation InfoClimat
+
 Les données InfoClimat sont converties vers une structure MongoDB enrichie :
 
-json
-{
-  "_id": "00052",
-  "provider": "infoclimat",
-  "name": "Armentières",
-  "lat": 50.689,
-  "lon": 2.877,
-  "measures": [...]
-}
-Export généré :
+                            json
+                          {
+                            "_id": "00052",
+                            "provider": "infoclimat",
+                            "name": "Armentières",
+                            "lat": 50.689,
+                            "lon": 2.877,
+                            "measures": [...]}
+                           
+  
+  Export généré :
 infoclimat_mongo.json
 
 -----
 
-✔️ 5 — Tests d’intégrité après migration
+ 5 — Tests d’intégrité après migration
+
 Les mêmes contrôles qu’avant migration sont réappliqués :
   - Validation de la structure
   - Cohérence des types
   - Détection de doublons restants
   - Détection de valeurs manquantes
 
-Ces tests garantissent que la transformation n’a pas introduit d’erreurs et que la donnée est prête pour ingestion dans MongoDB.
+Ces tests garantissent que la transformation n’ ont pas introduit des erreurs et que la donnée est prête pour ingestion dans MongoDB.
 
 
 # Pipeline de Migration vers MongoDB
