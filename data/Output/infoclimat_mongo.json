@@ -1,0 +1,66 @@
+[
+    {
+        "station_id": "00052",
+        "name": "Armentières",
+        "source": "InfoClimat",
+        "location": {
+            "latitude": 50.689,
+            "longitude": 2.877,
+            "elevation": 16
+        },
+        "license": {
+            "license": "CC BY",
+            "url": "https://creativecommons.org/licenses/by/2.0/fr/",
+            "source": "infoclimat.fr",
+            "metadonnees": "https://www.infoclimat.fr/stations/metadonnees.php?id=00052"
+        }
+    },
+    {
+        "station_id": "000R5",
+        "name": "Bergues",
+        "source": "InfoClimat",
+        "location": {
+            "latitude": 50.968,
+            "longitude": 2.441,
+            "elevation": 17
+        },
+        "license": {
+            "license": "CC BY",
+            "url": "https://creativecommons.org/licenses/by/2.0/fr/",
+            "source": "infoclimat.fr",
+            "metadonnees": "https://www.infoclimat.fr/stations/metadonnees.php?id=000R5"
+        }
+    },
+    {
+        "station_id": "07015",
+        "name": "Lille-Lesquin",
+        "source": "InfoClimat",
+        "location": {
+            "latitude": 50.575,
+            "longitude": 3.092,
+            "elevation": 47
+        },
+        "license": {
+            "license": "Etalab Open License",
+            "url": "https://www.etalab.gouv.fr/licence-ouverte-open-licence",
+            "source": "Meteo-France via infoclimat.fr",
+            "metadonnees": "https://donneespubliques.meteofrance.fr/metadonnees_publiques/fiches/fiche_59343001.pdf"
+        }
+    },
+    {
+        "station_id": "STATIC0010",
+        "name": "Hazebrouck",
+        "source": "InfoClimat",
+        "location": {
+            "latitude": 50.734,
+            "longitude": 2.545,
+            "elevation": 31
+        },
+        "license": {
+            "license": "CC BY",
+            "url": "https://creativecommons.org/licenses/by/2.0/fr/",
+            "source": "infoclimat.fr",
+            "metadonnees": "https://www.infoclimat.fr/stations/metadonnees.php?id=STATIC0010"
+        }
+    }
+]
