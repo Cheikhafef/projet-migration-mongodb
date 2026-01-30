@@ -1,0 +1,32 @@
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - meteo_network
+
+  migration:
+    build: ./scripts
+    container_name: migration_service
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+      - DB_NAME=projet_meteo
+    volumes:
+      - ./scripts/output:/data/output
+    command: ["python", "migrate.py"]
+    networks:
+      - meteo_network
+
+volumes:
+  mongo_data:
+
+networks:
+  meteo_network:
+    driver: bridge
